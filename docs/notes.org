@@ -1,1 +1,10 @@
-/home/arun/Videos/python_tutorials/FastAPI_coreySchafer/notes.org
+#+title: Python FastAPI Tutorial Notes
+* About
+In this series of videos, we'll be learning how to build a full-featured web application from the ground up using the FastAPI framework in Python. We'll build both a JSON API for programmatic access and HTML pages for users to browse in the browser. Throughout the series, we'll set up a database with SQLAlchemy, create Pydantic models for data validation, and implement complete CRUD operations. We'll add user registration and login with secure password hashing and JWT tokens, handle file uploads for profile pictures, use background tasks for sending emails, and organize our code properly with routers.
+
+
+* Github codes:
+The code from this video can be found here:
++ [[https://github.com/CoreyMSchafer/FastAPI-01-Getting-Start][Part 1]]
++ [[https://github.com/CoreyMSchafer/FastAPI-02-Templates][Part 2]]
++ [[https://github.com/CoreyMSchafer/FastAPI-03-Path-Parameters][Part 3]]
