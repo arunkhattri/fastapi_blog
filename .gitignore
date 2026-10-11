@@ -1,0 +1,21 @@
+# Ignore everything
+*
+
+# Allow directories
+!*/
+
+# Allow org files
+!*.org
+!*.txt
+
+# Allow project files
+!.gitignore
+!README.md
+!pyproject.toml
+!LICENSE
+
+# Allow source code
+!src/fastapi_blog/*.py
+
+!data/
+!docs/
