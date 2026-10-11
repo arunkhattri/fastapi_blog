@@ -16,6 +16,8 @@
 
 # Allow source code
 !src/fastapi_blog/*.py
+!src/fastapi_blog/templates/*
+!src/fastapi_blog/static/*
 
 !data/
 !docs/

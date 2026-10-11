@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Site Info -->
+        {% if title %}
+            <title>FastAPI Blog - {{ title }}</title>
+        {% else %}
+            <title>FastAPI Blog</title>
+        {% endif %}
+        <meta name="description" content="FastAPI Tutorial">
+        <meta name="author" content="Arun Khattri">
+
+        <!-- Preconnect for Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <!-- Custom Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+              rel="stylesheet">
+
+        <!-- Tailwind CSS v4 Browser Build & Dark Mode Config -->
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <style type="text/tailwindcss">
+         @variant dark (&:where(.dark, .dark *));
+        </style>
+
+        <!-- Stylesheet -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for("static", path="css/main.css") }}">
+
+        <!-- Favicon -->
+        <link rel="icon" href="{{ url_for("static", path="icons/favicon.ico") }}" sizes="any">
+        <link rel="icon" href="{{ url_for("static", path="icons/icon.svg") }}" type="image/svg+xml">
+    </head>
+    <body class="flex flex-col min-h-screen font-sans bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased">
+
+        <!-- Header / Navbar -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-[#527c9f] dark:bg-slate-900 border-b border-slate-700 shadow-md text-white">
+            <div class="w-full px-6 py-3 flex items-center justify-between">
+                <div class="flex items-center space-x-6">
+                    <a class="text-xl font-bold tracking-wide mr-4" href="{{ url_for("home") }}">FastAPI Blog</a>
+                    <nav class="hidden md:flex space-x-4">
+                        <a class="px-3 py-2 rounded-md bg-white/10 font-medium" href="{{ url_for("home") }}">Home</a>
+                    </nav>
+                </div>
+
+                <!-- Navbar Right Side -->
+                <div class="flex items-center space-x-3">
+                    <a class="px-4 py-2 text-sm font-medium border border-white/30 rounded-md hover:bg-white/10 transition" href="#">Login</a>
+                    <a class="px-4 py-2 text-sm font-medium bg-white text-slate-900 rounded-md hover:bg-slate-100 transition shadow-sm" href="#">Register</a>
+
+                    <!-- Theme Dropdown -->
+                    <div class="relative">
+                        <button id="themeMenuButton"
+                                class="px-3 py-2 text-sm font-medium rounded-md hover:bg-white/10 flex items-center gap-1 transition focus:outline-none cursor-pointer">
+                            <span id="bd-theme-text">🌗 Auto</span>
+                        </button>
+                        <div id="themeDropdown" class="hidden absolute right-0 mt-2 w-36 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 z-50">
+                            <button class="w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer" data-theme-value="light">🌝 Light</button>
+                            <button class="w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer" data-theme-value="dark">🌚 Dark</button>
+                            <button class="w-full text-left px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer" data-theme-value="auto">🌗 Auto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Container with Grid Layout -->
+        <main role="main" class="w-full px-6 pt-24 pb-12 flex-1">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+                <!-- Main Article Feed (8 Columns) -->
+                <div class="md:col-span-8 space-y-6">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+
+                <!-- Sidebar (4 Columns) -->
+                <aside class="md:col-span-4">
+                    <div class="content-section p-6 mb-6">
+                        <h3 class="text-lg font-semibold mb-2">Our Sidebar</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mb-4">You can put any information here you'd like.</p>
+                        <ul class="border border-slate-200 dark:border-slate-800 rounded-md divide-y divide-slate-200 dark:divide-slate-800 overflow-hidden text-sm">
+                            <li class="px-4 py-3 bg-slate-50 dark:bg-slate-800/50">Latest Posts</li>
+                            <li class="px-4 py-3">Announcements</li>
+                            <li class="px-4 py-3">Calendars</li>
+                            <li class="px-4 py-3">etc</li>
+                        </ul>
+                    </div>
+                </aside>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-auto py-6 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500 dark:text-slate-400">
+            <div class="max-w-6xl mx-auto px-4">
+                <p class="mb-0">
+                    © <span id="year"></span> Arun Khattri
+                </p>
+            </div>
+        </footer>
+
+        <!-- Set Footer Year -->
+        <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+        <!-- Theme Toggle Logic -->
+        <script>
+         const themeButton = document.getElementById('themeMenuButton');
+         const themeDropdown = document.getElementById('themeDropdown');
+
+         themeButton.addEventListener('click', () => {
+             themeDropdown.classList.toggle('hidden');
+         });
+
+         window.addEventListener('click', (e) => {
+             if (!themeButton.contains(e.target) && !themeDropdown.contains(e.target)) {
+                 themeDropdown.classList.add('hidden');
+             }
+         });
+
+         const setTheme = (theme) => {
+             const root = document.documentElement;
+             if (theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                 root.classList.add('dark');
+             } else {
+                 root.classList.remove('dark');
+             }
+             localStorage.setItem('theme', theme);
+
+             const themeText = { light: '🌝 Light', dark: '🌚 Dark', auto: '🌗 Auto' };
+             document.getElementById('bd-theme-text').textContent = themeText[theme];
+             themeDropdown.classList.add('hidden');
+         };
+
+         document.querySelectorAll('[data-theme-value]').forEach(button => {
+             button.addEventListener('click', () => setTheme(button.getAttribute('data-theme-value')));
+         });
+
+         setTheme(localStorage.getItem('theme') || 'auto');
+        </script>
+    </body>
+</html>

@@ -1,0 +1,151 @@
+:root {
+  /* Fonts */
+  --font-heading: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+
+  /* Specific Custom Colors */
+  --color-steel: #527c9f;
+  --color-link-hover: #428bca;
+
+  /* Custom Sizing (used with responsive queries) */
+  --article-img-size: 4rem; /* 64px */
+  --account-img-size: 7.813rem; /* 125px */
+}
+
+/* Base Styles (Font anchoring only, Tailwind handles the rest) */
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+a {
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-link-hover);
+  outline-offset: 2px;
+}
+
+/* Steel helper */
+.bg-steel {
+  background-color: var(--color-steel);
+}
+
+/* Specific Content Sections (The cards in the feed/sidebar) */
+.content-section {
+  background-color: #ffffff; /* Explicit light bg */
+  border: 1px solid #e2e8f0; /* Tailwind Slate 200 equivalent */
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05);
+  transition: box-shadow 0.15s ease, transform 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.content-section:hover {
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1);
+  border-color: #cbd5e1; /* Tailwind Slate 300 equivalent */
+}
+
+/* Tailwind Dark Mode Native Variant Syntax */
+.dark .content-section {
+  background-color: #0f172a; /* Tailwind Slate 900 equivalent */
+  border-color: #1e293b; /* Tailwind Slate 800 equivalent */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark article.content-section:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Articles Specific Styling */
+.article-title {
+  transition: color 0.2s ease-in-out;
+}
+
+a.article-title:hover,
+a.article-title:focus {
+  color: var(--color-link-hover);
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+  font-size: 1.25rem;
+}
+
+.article-img {
+  height: var(--article-img-size);
+  width: var(--article-img-size);
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 0 0 2px #ffffff;
+}
+
+.dark .article-img {
+  border-color: #1e293b;
+  box-shadow: 0 0 0 2px #0f172a;
+}
+
+.article-metadata {
+  padding-bottom: 0.063rem; /* 1px */
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.dark .article-metadata {
+  border-bottom-color: #1e293b;
+}
+
+.article-metadata a {
+  transition: color 0.2s ease-in-out;
+}
+
+.article-metadata a:hover,
+.article-metadata a:focus {
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 1.563rem; /* 25px */
+  height: 1.563rem;
+  vertical-align: middle;
+}
+
+/* Account/Profile Specific Styling */
+.account-img {
+  height: var(--account-img-size);
+  width: var(--account-img-size);
+  object-fit: cover;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.file-input-sm {
+  max-width: 300px;
+}
+
+/* Responsive Custom Variable Adjustments */
+@media (max-width: 768px) {
+  .account-heading {
+    font-size: 2rem;
+  }
+
+  .article-img {
+    height: 3rem;
+    width: 3rem;
+  }
+}
