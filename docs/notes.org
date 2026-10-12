@@ -8,3 +8,5 @@ The code from this video can be found here:
 + [[https://github.com/CoreyMSchafer/FastAPI-01-Getting-Start][Part 1]]
 + [[https://github.com/CoreyMSchafer/FastAPI-02-Templates][Part 2]]
 + [[https://github.com/CoreyMSchafer/FastAPI-03-Path-Parameters][Part 3]]
++ [[https://github.com/CoreyMSchafer/FastAPI-04-Pydantic-Schemas][Part 4]]
++ [[https://github.com/CoreyMSchafer/FastAPI-05-Database][Part 5]]

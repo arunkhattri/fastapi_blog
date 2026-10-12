@@ -22,7 +22,7 @@
         
         <!-- Title -->
         <h2 class="mb-2">
-          <a class="article-title text-xl font-bold text-slate-900 dark:text-white hover:text-blue-500" href="#">{{ post.title }}</a>
+          <a class="article-title text-xl font-bold text-slate-900 dark:text-white hover:text-blue-500" href="{{ url_for("post_page", post_id=post.id) }}">{{ post.title }}</a>
         </h2>
         
         <!-- Content -->
